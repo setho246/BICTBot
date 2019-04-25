@@ -12,7 +12,7 @@ client.on('message', message => {
     if (message.content.indexOf("<@!"+ client.user.id + ">") === 0) {
         var str = message.content.slice(22)
         message.channel.send(message.author.username + " said *\"" + str.slice(1) + "\"*  to me. **THE NERVE!**")
-		message.author.send("Who tf do you think you are m8?")
+		message.author.send("Who tf do you think you are mate?")
     }
 });
 
