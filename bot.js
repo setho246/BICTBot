@@ -7,9 +7,15 @@ client.on('ready', () => {
 
 client.on('message', message => {
     console.log("Recieved message from " + message.member.tag + " and it said" + message.content)
+    console.log(client.user.tag)
+    console.log(client.user)
+    if (message.content == "ping") {
+        message.channel.reply("pong")
+    }
+
     if (message.content.indexOf(client.user.tag) === 0) {
         var str = message.content.slice(13)
-        message.channel.send(message.author.tag+" said *"+str+"* to me. **THE NERVE!**")
+        message.channel.send(message.author.tag + " said *" + str + "* to me. **THE NERVE!**")
 
     }
 });
