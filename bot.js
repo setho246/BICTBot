@@ -6,7 +6,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    if (message.content.indexof("@BICTBot#0125") === 0) {
+    if (message.content.indexOf("@BICTBot#0125") === 0) {
         var str = message.content.slice(13)
         message.channel.send(message.author+" said *"+str+"* to me. **THE NERVE!**")
 
