@@ -7,8 +7,9 @@ client.on('ready', () => {
 
 client.on('message', message => {
     if (message.content === 'ping') {
-    	message.reply('pong');
-  	}
+        // Send "pong" to the same channel
+        message.channel.send('pong');
+      }
 });
 
 // THIS  MUST  BE  THIS  WAY
