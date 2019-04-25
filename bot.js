@@ -10,7 +10,7 @@ client.on('message', message => {
     if (message.content == "ping") {
         message.channel.send("pong")
     }
-
+    console.log(client.user.tag)
     if (message.content.indexOf(client.user.tag) === 0) {
         console.log("I was summoned")
         var str = message.content.slice(13)
