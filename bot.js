@@ -6,10 +6,11 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    if (message.content === 'ping') {
-        // Send "pong" to the same channel
-        message.channel.send('pong');
-      }
+    if (message.content.indexof("@BICTBot#0125") === 0) {
+        var str = message.content.slice(13)
+        message.channel.send(message.author+" said *"+str+"* to me. **THE NERVE!**")
+
+    }
 });
 
 // THIS  MUST  BE  THIS  WAY
