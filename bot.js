@@ -6,14 +6,13 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    console.log("Recieved message from " + message.member.tag + " and it said" + message.content)
-    console.log(client.user.tag)
-    console.log(client.user)
+    console.log("Recieved message from " + message.user.tag + " and it said" + message.content)
     if (message.content == "ping") {
-        message.channel.reply("pong")
+        message.channel.send("pong")
     }
 
     if (message.content.indexOf(client.user.tag) === 0) {
+        console.log("I was summoned")
         var str = message.content.slice(13)
         message.channel.send(message.author.tag + " said *" + str + "* to me. **THE NERVE!**")
 
