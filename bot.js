@@ -11,7 +11,7 @@ client.on('message', message => {
     }
     if (message.content.indexOf("<@!"+ client.user.id + ">") === 0) {
         var str = message.content.slice(22)
-        message.channel.send(message.author.username + " said *" + str + "* to me. **THE NERVE!**")
+        message.channel.send(message.author.username + " said *" + str.slice(1) + "* to me. **THE NERVE!**")
 
     }
 });
