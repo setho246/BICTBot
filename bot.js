@@ -6,7 +6,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    console.log("Recieved message from " + message.user.tag + " and it said" + message.content)
+    console.log("Recieved message from " + message.author.tag + " and it said" + message.content)
     if (message.content == "ping") {
         message.channel.send("pong")
     }
