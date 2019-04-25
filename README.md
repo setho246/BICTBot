@@ -31,4 +31,4 @@ or for the more impatient...
 4. Run "`heroku local`" to start the bot locally
   * Additional Step  
 If you know that no-one else is currently developing on the bot, run `heroku maintenance:on` to prevent dual messages  
-**_DO NOT FORGET TO THIS BACK OFF WITH "`heroku maintenance:off`"_**
+**_DO NOT FORGET TO TURN THIS BACK OFF WITH "`heroku maintenance:off`"_**
