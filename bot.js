@@ -6,10 +6,10 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    console.log("Recieved message from " + message.author + " and it said" + message.content)
-    if (message.content.indexOf("@BICTBot#0125") === 0) {
+    console.log("Recieved message from " + message.member.tag + " and it said" + message.content)
+    if (message.content.indexOf(ClientUser.tag) === 0) {
         var str = message.content.slice(13)
-        message.channel.send(message.author+" said *"+str+"* to me. **THE NERVE!**")
+        message.channel.send(message.author.tag+" said *"+str+"* to me. **THE NERVE!**")
 
     }
 });
