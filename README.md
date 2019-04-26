@@ -2,7 +2,8 @@
 ## A bot for the BICT
 
 # Getting started with the bot
-- Ask me to add you as a contributer so you can commit straight to source
+- Ask me (Seth) to add you as a contributer to this git repo so you can make changes straight to source
+- If you don't have it yet, install [git](https://git-scm.com/)
 - Clone it to a local repository with "`git clone https://github.com/setho246/BICTBot.git`"
 - The simplest way to wrap your head around git is to use Visual Studio Code's built in source control helper on the lefthand side
 - **IMPORTANT: run command "`git checkout staging`" in  /BICTBot/**
