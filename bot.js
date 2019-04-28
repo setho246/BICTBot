@@ -35,7 +35,8 @@ function bot_AddRole(message) {
 			return role.name === roleToAdd 
 		});
 		if(found) { //If it exists
-			guildUser.addRole(found[0].id)
+			console.log(found);
+			guildUser.addRole(found.id)
 		} else { 
 			guild.createRole({ //Create role
 				name: roleToAdd
