@@ -41,11 +41,50 @@ function bot_AddRole(message) {
 			guild.createRole({ //Create role
 				name: roleToAdd
 			  })
-			  .then(role => guildUser.addRole(role.id)) //Give the user a role
+			  .then(role => {
+				guildUser.addRole(role.id);
+				console.log(`Gave user ${guildUser.displayName} (${guildUser.user.username}) the role of ${role.name}`)
+					roleCreationSuccess(role, guild, roleToAdd)
+				
+				
+			  }) //Give the user a role
 			  .catch(console.error)
 		}
 	});
 }
 
+function roleCreationSuccess(role, guild, roleToAdd) {
+	guild.createChannel(roleToAdd, "category", [{ //Create the category for the role
+		id: guild.defaultRole.id,
+		denied: [66575680]	//Hide it from @everyone
+	}, {		
+		id: role.id,	//Give the role access
+		allowed: [104193344]
+	}])
+	.then(catChannel => {
+		guild.createChannel(roleToAdd+"-text", "text", [{	//Create the text channel for the role
+			id: guild.defaultRole.id,
+			denied: [66575680]	//Hide it from @everyone
+		}, {		
+			id: role.id,
+			allowed: [104193344]	//Give access to the role
+		}])
+		.then(textChannel => textChannel.setParent(catChannel))	//Put the channel in the category
+		.catch(console.error);
+		guild.createChannel(roleToAdd+"-voice", "voice", [{	//Create the voice channel for the role
+			id: guild.defaultRole.id,
+			denied: [66575680]	//Hide it from @everyone
+		}, {		
+			id: role.id,
+			allowed: [104193344]	//Give access to the role
+		}])
+		.then(voiceChannel => voiceChannel.setParent(catChannel))	//Put the channel in the correct category
+		.catch(console.error);
+	})
+	.catch(console.error)
+
+}
+
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
+
