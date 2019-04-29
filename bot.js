@@ -7,7 +7,7 @@ client.on('ready', () => {
 
 client.on('message', message => {
     if (message.content == "ping") {
-		message.channel.send("pongx2")
+		message.channel.send("pongx3")
     }
     if (message.content.indexOf("<@!"+ client.user.id + ">") === 0) {
         var str = message.content.slice(22)
