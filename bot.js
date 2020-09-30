@@ -1,6 +1,27 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+const { Client } = require('pg');
+
+const dbclient = new Client({
+	connectionString: 'postgres://sethhilder',
+	ssl: {
+		rejectUnauthorized: false
+	}
+});
+
+dbclient.connect();
+
+
+dbclient.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+	if (err) throw err;
+	for (let row of res.rows) {
+		console.log(JSON.stringify(row));
+	}
+	dbclient.end();
+});
+
+
 client.on('ready', () => {
 	console.log('I am ready!');
 });
@@ -20,18 +41,32 @@ client.on('message', message => {
 
 
 function createRole(user, title, colour) {
-	var roles = user.roles.cache
-	var roleToUpdate = roles.find(role => role.client === client)
+	var roles = user.roles.array()
+	var roleToUpdate = null
+
+	console.log("Client id for this bot is " + client.user.id)
+	roleToUpdate = roles.filter(role => {
+		console.log("Client for role \"" + role.name + "\" is \"" + role.client.user.id)
+		role.client.user.id === client.user.id
+	})
 
 
 
-	if (roleToUpdate === null) {
-		user.guild.roles.createRole({
+
+
+	console.log("role update is:" + roleToUpdate)
+	console.log(typeof roleToUpdate)
+
+	if (roleToUpdate == null) {
+		console.log("About to create Role even though I dont need to")
+		user.guild.createRole({
 			name: title,
 			color: colour
 		}).then(role => {
-			user.roles.add(role)
+			user.addRole(role)
 		})
+	} else {
+		console.log("no role needed")
 	}
 
 }
@@ -99,5 +134,6 @@ function roleCreationSuccess(role, guild, roleToAdd) {
 }
 
 // THIS  MUST  BE  THIS  WAY
-client.login(process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN)
+// client.login('NTcyMDY1MjExODg0ODk2MjY2.XMW3Pg.8JQVcE0lm5dLFxFFVJRoo7_4ZmM')
 
