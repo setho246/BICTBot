@@ -4,7 +4,7 @@ const client = new Discord.Client();
 const { Client } = require('pg');
 
 const dbclient = new Client({
-	connectionString: 'postgres://sethhilder',
+	connectionString: process.env.DATABASE_URL,
 	ssl: {
 		rejectUnauthorized: false
 	}
@@ -135,5 +135,4 @@ function roleCreationSuccess(role, guild, roleToAdd) {
 
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN)
-// client.login('NTcyMDY1MjExODg0ODk2MjY2.XMW3Pg.8JQVcE0lm5dLFxFFVJRoo7_4ZmM')
 
